@@ -1,0 +1,47 @@
+services:
+  database:
+    container_name: postgres-container
+    image: postgres:17.5
+    environment:
+      POSTGRES_PASSWORD: 12345
+    volumes:
+      - ./block_management_init.sql:/docker-entrypoint-initdb.d/init.sql
+      - block-management:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  database_update:
+    container_name: liquibase-container
+    image: liquibase/liquibase:4.32.0
+    depends_on:
+      - database
+    working_dir: /liquibase/changelog  
+    volumes:
+      - ./db_changelog:/liquibase/changelog
+    environment:
+      LIQUIBASE_COMMAND_URL: jdbc:postgresql://postgres-container:5432/postgres
+      LIQUIBASE_COMMAND_USERNAME: postgres
+      LIQUIBASE_COMMAND_PASSWORD: 12345
+    command: --changelog-file=db_changelog_master.yml --defaultSchemaName=block_management update
+
+  application:
+    container_name: block-management-container
+    image: pdoc92/block-management
+    pull_policy: ${BLOCK_MANAGEMENT_PULL_POLICY:-missing}
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-container:5432/postgres?currentSchema=block_management
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+      JWT_EXPIRATION_TIME: 3600000
+      JWT_SECRET: F84czz9GhjvFEiHoi+s7IRfQ9pJcm7VI0SWZVFn2ks3GoKS+iCDR8BaATewn4IRx2eao9gL+1DwhvV+3G5n4sA=
+      LOG_LEVEL: INFO
+      REST_LOG_LEVEL: TRACE
+    depends_on:
+      - database
+      - database_update
+
+volumes:
+  block-management:
