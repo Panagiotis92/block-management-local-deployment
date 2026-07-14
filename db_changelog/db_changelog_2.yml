@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-2
+      author: panos
+      changes:
+        - sql: |
+            alter table block alter column electricity_code drop not null;
+            alter table block alter column water_code drop not null;

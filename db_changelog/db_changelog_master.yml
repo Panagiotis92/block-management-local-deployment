@@ -1,5 +1,8 @@
 databaseChangeLog:
   - include:
       file: db_changelog_1.yml
-      relativeToChangeLogFile: true 
+      relativeToChangeLogFile: true
+  - include:
+      file: db_changelog_2.yml
+      relativeToChangeLogFile: true     
       
