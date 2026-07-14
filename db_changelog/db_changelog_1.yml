@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-1
+      author: panos
+      changes:
+        - sql: |
+            insert into authority (id, name) values
+              (gen_random_uuid(), 'role.getRoles'),
+              (gen_random_uuid(), 'user.getUsers'),
+              (gen_random_uuid(), 'user.getById'),
+              (gen_random_uuid(), 'user.getRoles');
+            insert into role_authority (role_id, authority_id)
+            select role.id, authority.id from role, authority where
+            (role.name = 'ADMIN' and authority.name = 'role.getRoles') or
+            (role.name = 'ADMIN' and authority.name = 'user.getUsers') or
+            (role.name = 'ADMIN' and authority.name = 'user.getById') or
+            (role.name = 'ADMIN' and authority.name = 'user.getRoles');
