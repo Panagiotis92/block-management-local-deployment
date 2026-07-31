@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-4
+      author: panos
+      changes:
+        - sql: |
+            insert into authority (id, name) values (gen_random_uuid(), 'viewer.getManagerInfo');
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'VIEWER' and authority.name = 'viewer.getManagerInfo';
+            insert into authority (id, name) values (gen_random_uuid(), 'flat.getById');
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'VIEWER' and authority.name = 'flat.getById';
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'MANAGER' and authority.name = 'flat.getById';
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'ADMIN' and authority.name = 'flat.getById';
+            insert into authority (id, name) values (gen_random_uuid(), 'blockExpense.getById');
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'VIEWER' and authority.name = 'blockExpense.getById';
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'MANAGER' and authority.name = 'blockExpense.getById';
