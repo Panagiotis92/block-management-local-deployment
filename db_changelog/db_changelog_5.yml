@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-5
+      author: panos
+      changes:
+        - sql: |
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'MANAGER' and authority.name = 'expenseType.getExpenseTypes';
+            insert into role_authority select role.id, authority.id from role, authority where role.name = 'VIEWER' and authority.name = 'expenseType.getExpenseTypes';

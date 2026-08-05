@@ -10,5 +10,8 @@ databaseChangeLog:
       relativeToChangeLogFile: true 
   - include:
       file: db_changelog_4.yml
-      relativeToChangeLogFile: true             
+      relativeToChangeLogFile: true 
+  - include:
+      file: db_changelog_5.yml
+      relativeToChangeLogFile: true                 
       
