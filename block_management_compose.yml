@@ -43,5 +43,16 @@ services:
       - database
       - database_update
 
+  client:
+    container_name: block-management-client-container
+    image: pdoc92/block-management-client
+    pull_policy: ${BLOCK_MANAGEMENT_PULL_POLICY:-missing}
+    ports:
+      - 8100:80
+    depends_on:
+      - database
+      - database_update
+      - application      
+
 volumes:
   block-management:
