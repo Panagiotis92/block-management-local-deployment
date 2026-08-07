@@ -1,36 +1,54 @@
-# Block Management REST API
+# Block Management Platform
 
-This is a REST API for managing blocks.
+### Description
 
-An Admin user can create User, Person, Block, Flat, Manager Period.
+A platform for managing block expenses.
 
-A Manager user can create expenses, generate report and view information about his/hers Periods.
+#### User Roles:
+* **Admin:** As an *Admin* you can add *Block*, *Flat*, *Tenants*, *Owners*, *Multipliers*, *Managers*, *Viewers*, *Manager Periods*
 
-A Viewer user of a Manager Period can view information about it and is deleted when the Manager Period ends.
+* **Manager:** As a *Manager* you can view info for the *Blocks* you manage, add *Expenses*, get pdf report and send *Expenses* to *Tenants* and *Owners* through email
+
+* **Viewer:** *Tenants* and *Owners* of a *Block* can log in with a *Viewer* to view *Block's* info (including *Expenses*)
 
 ---
 
-##### Run the app
-1) Clone this repository  
-2) Download and install docker 
-3) Open terminal, cd to this folder and run:
+### Instructions
 
+#### Run:
+##### Prequisities: [git](https://git-scm.com/), [docker](https://www.docker.com/)
+
+1) Clone this repository
+2) Open a terminal and cd to this folder
+3) Open docker and run
 ```bash
 docker compose -f block_management_compose.yml --env-file envs/env.user up -d
 ```
-
----
-
-##### Access the REST API through Swagger UI
-1) Go to [http://localhost:8080/block-management/swagger-ui/index.html](http://localhost:8080/block-management/swagger-ui/index.html)  
-2) Execute **"POST credentials"** with credentials `panos-12345` (ADMIN) and copy the response (the jwt)  
-3) Go to top of the page, click on **"Authorize"** and paste there the jwt  
-
----
+#### Use:
+1) Open a browser at [http://localhost:8081](http://localhost:8081)
+2) Log in with `panos-12345` (*Admin*) to create your *Block*, *Flats*, *Multipliers*, *Tenants*, *Owners*, *Manager*, *Viewer* and *Manager Period*
+3) After that you can logout and log in as the *Manager* you created so you can add *Expenses*
  
-* Connect to **postgres** database at **localhost** with password `postgres-12345`  
-* To shutdown the app cd to this folder and run:
+#### Shutdown:
+To shutdown the app cd to this folder and run:
 
 ```bash
 docker compose -f block_management_compose.yml down
 ```
+
+---
+
+### Extra
+
+#### Access the REST API: 
+
+1) Go to [Swagger UI](http://localhost:8080/block-management/swagger-ui/index.html)
+2) Execute the service **"POST credentials"** with credentials `panos-12345` (*Admin*)
+3) Copy token from response
+4) Go to the top right of the page click on **"Authorize"** and paste there the token
+5) Now you can access the other services (available to admin)
+
+You can logout from **"Authorize"** and execute from step 2 with another user with a different role to access services available only to Manager and Viewer
+
+#### Connect to the database:
+* Connect to **postgres** database at **localhost** with password `postgres-12345`
