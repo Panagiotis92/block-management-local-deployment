@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-5
+      author: panos
+      changes:
+        - sql: |
+            create index expense_period_start_period_end_index on expense (period_start, period_end);
+            create index expense_period_end_index on expense (period_end);
+            create index manager_period_period_start_index on manager_period (period_start);
+            create index manager_period_period_end_index on manager_period (period_end);
