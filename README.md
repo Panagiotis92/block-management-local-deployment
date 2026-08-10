@@ -1,8 +1,8 @@
-# Block Management Platform
+# Block Management
 
 ### Description
 
-A platform for managing block expenses.
+A platform for managing blocks (flats, owners, tenants, expenses).
 
 #### User Roles:
 * **Admin:** As an *Admin* you can add *Block*, *Flat*, *Tenants*, *Owners*, *Multipliers*, *Managers*, *Viewers*, *Manager Periods*
@@ -25,12 +25,12 @@ A platform for managing block expenses.
 docker compose -f block_management_compose.yml --env-file envs/env.user up -d
 ```
 #### Use:
-1) Open a browser at [http://localhost:8081](http://localhost:8081)
+1) Open a browser at [http://localhost:8100](http://localhost:8100)
 2) Log in with `panos-12345` (*Admin*) to create your *Block*, *Flats*, *Multipliers*, *Tenants*, *Owners*, *Manager*, *Viewer* and *Manager Period*
 3) After that you can logout and log in as the *Manager* you created so you can add *Expenses*
  
 #### Shutdown:
-To shutdown the app cd to this folder and run:
+To shutdown the platform cd to this folder and run:
 
 ```bash
 docker compose -f block_management_compose.yml down
