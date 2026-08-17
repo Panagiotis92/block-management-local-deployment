@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-7
+      author: panos
+      changes:
+        - sql: |
+            alter table block rename column cadastralp_code to cadastral_code;
