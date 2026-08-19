@@ -2,14 +2,14 @@
 
 ### Description
 
-A platform for managing blocks (flats, owners, tenants, expenses).
+A platform for managing blocks.
 
 #### User Roles:
-* **Admin:** As an *Admin* you can add *Block*, *Flat*, *Tenants*, *Owners*, *Multipliers*, *Managers*, *Viewers*, *Manager Periods*
+* **Admin:** As an *Admin* you can create *Blocks*, *Flats*, *Tenants*, *Owners*, *Multipliers*, *Managers*, *Viewers*, *Manager Periods*
 
-* **Manager:** As a *Manager* you can view info for the *Blocks* you manage, add *Expenses*, get pdf report and send *Expenses* to *Tenants* and *Owners* through email
+* **Manager:** As a *Manager* you can view info for the *Blocks* you manage, create *Expenses*, get pdf report and send *Expenses* to *Tenants* and *Owners* through email
 
-* **Viewer:** *Tenants* and *Owners* of a *Block* can log in with a *Viewer* to view *Block's* info (including *Expenses*)
+* **Viewer:** *Tenants* and *Owners* of a *Block* can log in with a *Viewer* user to view *Block's* info
 
 ---
 
@@ -26,8 +26,8 @@ docker compose -f block_management_compose.yml --env-file envs/env.user up -d
 ```
 #### Use:
 1) Open a browser at [http://localhost:8100](http://localhost:8100)
-2) Log in with `panos-12345` (*Admin*) to create your *Block*, *Flats*, *Multipliers*, *Tenants*, *Owners*, *Manager*, *Viewer* and *Manager Period*
-3) After that you can logout and log in as the *Manager* you created so you can add *Expenses*
+2) Log in with `panos-12345` (*Admin*) to create a *Manager Period* (along with all related entities)
+3) After that you can logout and log in as the *Manager* you created so you can create *Expenses*
  
 #### Shutdown:
 To shutdown the platform cd to this folder and run:
