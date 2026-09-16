@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: changelog-9
+      author: panos
+      changes:
+        - sql: |
+            drop index expense_period_end_index;
+            drop index expense_expense_type_id_index;
+            create index expense_expense_type_id_index on expense (expense_type_id, period_start, period_end);
