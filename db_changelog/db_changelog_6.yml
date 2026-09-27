@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: changelog-5
+      id: changelog-6
       author: panos
       changes:
         - sql: |
