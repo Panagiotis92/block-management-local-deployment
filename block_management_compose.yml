@@ -39,6 +39,7 @@ services:
       JWT_SECRET: F84czz9GhjvFEiHoi+s7IRfQ9pJcm7VI0SWZVFn2ks3GoKS+iCDR8BaATewn4IRx2eao9gL+1DwhvV+3G5n4sA=
       LOG_LEVEL: INFO
       REST_LOG_LEVEL: TRACE
+      ALLOWED_ORIGINS: http://localhost:8100
     depends_on:
       - database
       - database_update
